@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace destradaS5A.Utils
 {
@@ -58,5 +60,33 @@ namespace destradaS5A.Utils
             }
             return new List<Persona>();
         }
+
+        public void UpdatePerson(Persona person)
+        {
+            try
+            {
+                Init();
+                conn.Update(person);
+                StatusMessage = $"Se actualizó con exito {person.Name}.";
+
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Erros al actualizar{person.Name} : {ex.Message}";
+            }
+            }
+            public void DeletePerson(int id)
+            {
+                try
+                {
+                    Init();
+                    conn.Delete<Persona>(id);
+                    StatusMessage = "Se elimino correctamente.";
+                }
+                catch (Exception ex)
+                {
+                    StatusMessage = $"Error al eliminar:{ex.Message}";
+                }
+            }
     }
 }

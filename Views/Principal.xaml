@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="destradaS5A.Views.Principal"
-             Title="Principal">
-    <VerticalStackLayout>
+             Title="Persona">
+    <VerticalStackLayout
+        Padding="25"
+        Spacing="25">
         <Label 
             Text="Semana 5 SQLite"
             FontSize="20"
@@ -11,15 +13,15 @@
             HorizontalOptions="Center" />
 
         <Entry x:Name="txtname"
-               Placeholder="Ingrese nombre"/>
+                   Placeholder="Ingrese nombre"/>
 
         <Grid Padding="5" RowSpacing="1">
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition  Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -28,16 +30,19 @@
             <Button x:Name="btnAgregar"
                     Text="Agregar Personas"
                     Clicked="btnAgregar_Clicked"
+                    Margin="0,0,0,10"
                     Grid.Row="0"
                     Grid.Column="0"/>
+
             <Label x:Name="lblStatus"
                    Grid.Row="1"
                    Grid.Column="0"
                    TextColor="Purple"/>
-            
+
             <Button x:Name="btnMostrar"
                    Text="Mostrar Personas"
-                    Clicked="btnMostrar_Clicked"
+                   Clicked="btnMostrar_Clicked"
+                   Margin="0,0,0,10"
                    Grid.Row="2"
                    Grid.Column="0"/>
 
@@ -47,20 +52,67 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Id}" Grid.Column="0"/>
-                            <Label Text="{Binding Name}" Grid.Column="1"/>
+                            
+                            <Label x:Name="lblEliminar"
+                                   Grid.Row="0" 
+                                   Grid.Column="0"/>
+                            
+                            <Label Text="{Binding Id}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="1" 
+                                   IsVisible="False"
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+                            
+                            <Label Text="{Binding Name}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="2" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+
+                            <Label Text="" 
+                                   Grid.Row="0" 
+                                   Grid.Column="3" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+
+                            <Button x:Name="btnEditar"
+                                    Grid.Row="0"
+                                    Grid.Column="4"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Start"
+                                    Text="Editar"
+                                    Clicked="btnEditar_Clicked"/>
+
+                            <Label Text=" " 
+                                   Grid.Row="0" 
+                                   Grid.Column="5" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+
+                            <Button x:Name="btnEliminar"
+                                    Grid.Row="0" 
+                                    Grid.Column="6"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Start"
+                                    Text="Eliminar"
+                                    Clicked="btnEliminar_Clicked"/>
+
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-        
-
-
-
     </VerticalStackLayout>
 </ContentPage>

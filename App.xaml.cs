@@ -9,7 +9,7 @@ namespace destradaS5A
         {
             InitializeComponent();
 
-            MainPage = new Views.Principal();
+            MainPage = new NavigationPage( new Views.Principal());
             person = personRepository;
         }
     }

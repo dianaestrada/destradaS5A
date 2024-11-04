@@ -25,5 +25,26 @@ public partial class Principal : ContentPage
         ListaPersonas.ItemsSource = people;
 
     }
-    //eliminar y actualizar tarea
+
+    private async void btnEliminar_Clicked(object sender, EventArgs e)
+    {
+        var delete = sender as Button;
+        var persona = delete.BindingContext as Persona;
+
+        bool validar = await DisplayAlert("Confirmacion", $"¿Estás seguro de borrar a {persona.Name}?", "si", "no");
+
+        if (validar)
+        {
+            App.person.DeletePerson(persona.Id);
+            await DisplayAlert("Confirmar", App.person.StatusMessage, "Aceptar");
+            btnMostrar_Clicked(sender, e);
+        }
+    }
+
+    private void btnEditar_Clicked(object sender, EventArgs e)
+    {
+        var update = sender as Button;
+        var persona = update.BindingContext as Persona;
+        Navigation.PushAsync(new Views.Editar(persona.Name, persona.Id));
+    }
 }
